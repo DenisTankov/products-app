@@ -1,0 +1,26 @@
+.header {
+   width: 100%;
+   min-width: auto;
+   background: grey;
+   display: flex;
+   align-items: center;
+   padding: 20px;
+   justify-content: center;
+   margin-bottom: 30px;
+}
+
+.filterButtons {
+   display: flex;
+   gap: 10px;
+   margin-top: 10px;
+}
+
+.active {
+   background: #e63946;
+   color: white;
+   font-weight: bold;
+}
+
+h1 {
+   color: black;
+}
