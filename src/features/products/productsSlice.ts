@@ -9,52 +9,82 @@ export interface Product {
    isFavorite: boolean;
 }
 
+interface ApiProduct {
+   id: number;
+   title: string;
+   description: string;
+   thumbnail: string;
+   [key: string]: unknown;
+}
+
+interface ProductsResponse {
+   products: ApiProduct[];
+}
+
+export enum Status {
+   Idle = "idle",
+   Loading = "loading",
+   Succeeded = "succeeded",
+   Failed = "failed",
+}
+
+export enum FilterType {
+   All = "all",
+   Favorites = "favorites",
+}
+
 interface ProductsState {
    items: Product[];
-   status: "idle" | "loading" | "succeeded" | "failed";
-   filter: "all" | "favorites";
+   status: Status;
+   filter: FilterType;
 }
 
 const initialState: ProductsState = {
    items: [],
-   status: "idle",
-   filter: "all",
+   status: Status.Idle,
+   filter: FilterType.All,
 };
 
-export const fetchProducts = createAsyncThunk("products/fetch", async () => {
-   const response = await axios.get("https://dummyjson.com/products");
-   return response.data.products.map((product: any) => ({
-      ...product,
-      isFavorite: false,
-   }));
+export const fetchProducts = createAsyncThunk<Product[]>("products/fetch", async () => {
+   const { data } = await axios.get<ProductsResponse>("https://dummyjson.com/products");
+
+   return data.products.map(
+      (p): Product => ({
+         id: p.id,
+         title: p.title,
+         description: p.description,
+         thumbnail: p.thumbnail,
+         isFavorite: false,
+      })
+   );
 });
 
 const productsSlice = createSlice({
    name: "products",
    initialState,
    reducers: {
-      toggleFavorite: (state, action: PayloadAction<number>) => {
+      toggleFavorite(state, action: PayloadAction<number>) {
          const product = state.items.find((p) => p.id === action.payload);
          if (product) product.isFavorite = !product.isFavorite;
       },
-      deleteProduct: (state, action: PayloadAction<number>) => {
+      deleteProduct(state, action: PayloadAction<number>) {
          state.items = state.items.filter((p) => p.id !== action.payload);
       },
-      setFilter: (state, action: PayloadAction<"all" | "favorites">) => {
+      setFilter(state, action: PayloadAction<FilterType>) {
          state.filter = action.payload;
       },
    },
    extraReducers: (builder) => {
       builder
          .addCase(fetchProducts.pending, (state) => {
-            state.status = "loading";
+            state.status = Status.Loading;
          })
          .addCase(fetchProducts.fulfilled, (state, action) => {
+            state.status = Status.Succeeded;
             state.items = action.payload;
-            state.status = "succeeded";
          })
          .addCase(fetchProducts.rejected, (state) => {
-            state.status = "failed";
+            state.status = Status.Failed;
          });
    },
 });
