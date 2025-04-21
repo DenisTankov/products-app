@@ -2,7 +2,7 @@ import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-d
 import { Header } from "./components/Header/Header";
 import { ProductsPage } from "./pages/ProductsPage/ProductsPage";
 import "./styles/App.scss";
-// import { ProductDetailsPage } from "./pages/ProductDetailsPage";
+import { ProductDetailsPage } from "./pages/ProductDetailsPage/ProductDetailsPage";
 
 function App() {
    return (
@@ -13,7 +13,7 @@ function App() {
                <Routes>
                   <Route path="/" element={<Navigate to="/products" />} />
                   <Route path="/products" element={<ProductsPage />} />
-                  {/* <Route path="/products/:id" element={<ProductDetailsPage />} /> */}
+                  <Route path="/products/:id" element={<ProductDetailsPage />} />
                </Routes>
             </div>
          </Router>

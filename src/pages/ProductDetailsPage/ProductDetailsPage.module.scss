@@ -1,0 +1,30 @@
+.details {
+   width: 100%;
+}
+
+.backBtn {
+   margin-bottom: 24px;
+}
+.card {
+   display: flex;
+   width: 100%;
+   gap: 24px;
+   background: #fff;
+   border-radius: 8px;
+   border: 1px solid #eee;
+}
+.image {
+   width: 320px;
+   height: 320px;
+   background-size: cover;
+   background-position: center;
+   border-radius: 12px;
+   flex-shrink: 0;
+}
+.info {
+   max-width: 600px;
+}
+
+p {
+   color: #555;
+}
