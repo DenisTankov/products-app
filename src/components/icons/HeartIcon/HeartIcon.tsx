@@ -1,5 +1,5 @@
-import Heart from "../../assets/icons/heart.svg";
-import HeartFill from "../../assets/icons/heart-fill.svg";
+import Heart from "../../../assets/svg/heart.svg";
+import HeartFill from "../../../assets/svg/heart-fill.svg";
 
 interface HeartIconProps {
    filled?: boolean;

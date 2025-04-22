@@ -1,5 +1,5 @@
-import { HeartIcon } from "../../components/HeartIcon/HeartIcon";
-import { TrashBinIcon } from "../../components/TrashBinIcon/TrashBinIcon";
+import { HeartIcon } from "../icons/HeartIcon/HeartIcon";
+import { TrashBinIcon } from "../icons/TrashBinIcon/TrashBinIcon";
 
 import cls from "./ProductCard.module.scss";
 import { AppDispatch } from "../../app/store";

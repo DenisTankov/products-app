@@ -1,4 +1,4 @@
-import TrashBin from "../../assets/icons/trash-bin.svg";
+import TrashBin from "../../../assets/svg/trash-bin.svg";
 
 interface TrashBinIconProps {
    className?: string;

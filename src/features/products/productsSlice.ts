@@ -9,6 +9,12 @@ export interface Product {
    isFavorite: boolean;
 }
 
+interface NewProductPayload {
+   title: string;
+   description: string;
+   thumbnail: string;
+}
+
 interface ApiProduct {
    id: number;
    title: string;
@@ -73,6 +79,18 @@ const productsSlice = createSlice({
       setFilter(state, action: PayloadAction<FilterType>) {
          state.filter = action.payload;
       },
+      addProduct(state, action: PayloadAction<NewProductPayload>) {
+         const { title, description, thumbnail } = action.payload;
+         const maxId = state.items.reduce((max, p) => Math.max(max, p.id), 0);
+         const newProduct: Product = {
+            id: maxId + 1,
+            title,
+            description,
+            thumbnail,
+            isFavorite: false,
+         };
+         state.items.unshift(newProduct);
+      },
    },
    extraReducers: (builder) => {
       builder
@@ -89,5 +107,5 @@ const productsSlice = createSlice({
    },
 });
 
-export const { toggleFavorite, deleteProduct, setFilter } = productsSlice.actions;
+export const { toggleFavorite, deleteProduct, setFilter, addProduct } = productsSlice.actions;
 export default productsSlice.reducer;

@@ -1,0 +1,108 @@
+:root {
+   --primary: #6366f1; /* indigo */
+   --text-dark: #222;
+   --text-muted: #666;
+   --border: #e5e7eb;
+   --radius: 12px;
+   --shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.container {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   background: #4f4f4f;
+}
+
+.form {
+   width: 100%;
+   max-width: 480px;
+   display: flex;
+   flex-direction: column;
+   gap: 1.25rem;
+   padding: 2rem 1.5rem;
+   background: #fff;
+   border: 1px solid #c2c2c2;
+   border-radius: 8px;
+}
+
+.title {
+   width: 100%;
+   margin-bottom: 1rem;
+   font-size: 1.5rem;
+   font-weight: 600;
+   text-align: center;
+   color: var(--text-dark);
+}
+
+label {
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+   font-size: 0.875rem;
+   color: var(--text-muted);
+}
+
+input,
+textarea {
+   font-size: 0.9375rem;
+   padding: 0.75rem 0.9rem;
+   border: 1px solid var(--border);
+   border-radius: var(--radius);
+   background: #fafafa;
+   transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+   resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+   border-color: var(--primary);
+   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+   outline: none;
+   background: #fff;
+}
+
+/* ---------- Messages ---------- */
+.error {
+   margin-top: 0.25rem;
+   font-size: 0.75rem;
+   color: #e11d48; /* rose-600 */
+}
+
+/* ---------- Button ---------- */
+.btn {
+   align-self: center;
+   padding: 0.75rem 2rem;
+   background: var(--primary);
+   color: #fff;
+   border: none;
+   border-radius: var(--radius);
+   font-size: 1rem;
+   font-weight: 500;
+   cursor: pointer;
+   box-shadow: 0 3px 10px rgba(99, 102, 241, 0.25);
+   transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.25s ease;
+}
+
+.btn:hover:not(:disabled) {
+   background: #4f52e9; /* немного темнее */
+   transform: translateY(-2px);
+}
+
+.btn:active:not(:disabled) {
+   transform: translateY(0);
+}
+
+.btn:disabled {
+   background: #c7c9ff;
+   cursor: not-allowed;
+   box-shadow: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+   .form {
+      padding: 1.5rem 1rem;
+   }
+}

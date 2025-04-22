@@ -8,13 +8,13 @@
    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
    line-height: 1.5;
    font-weight: 400;
-
    color-scheme: light dark;
    color: rgba(255, 255, 255, 0.87);
-   background-color: #242424;
-
+   background-color: #4f4f4f;
    font-synthesis: none;
    text-rendering: optimizeLegibility;
+   --buttons-active: #ffdd00;
+   --buttons-bg: #4f4f4f;
 }
 
 a {
@@ -41,16 +41,19 @@ button {
    font-size: 1em;
    font-weight: 500;
    font-family: inherit;
-   background-color: #1a1a1a;
+   background-color: var(--buttons-bg);
    cursor: pointer;
    transition: border-color 0.25s;
+   color: #d1d1d1;
 }
 button:hover {
-   border-color: #646cff;
+   border-color: var(--buttons-active);
+   color: var(--buttons-active);
 }
 button:focus,
 button:focus-visible {
-   outline: 4px auto -webkit-focus-ring-color;
+   border-color: var(--buttons-active);
+   color: var(--buttons-active);
 }
 
 @media (prefers-color-scheme: light) {
