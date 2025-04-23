@@ -36,7 +36,7 @@ export const ProductDetailsPage = () => {
          <div className={cls.card}>
             <div className={cls.image} style={{ backgroundImage: `url(${product.thumbnail})` }} />
             <div className={cls.info}>
-               <h1>{product.title}</h1>
+               <h1 className={cls.title}>{product.title}</h1>
                <p>{product.description}</p>
             </div>
          </div>
