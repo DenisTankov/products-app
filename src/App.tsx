@@ -8,7 +8,7 @@ import "./styles/App.scss";
 function App() {
    return (
       <div className="app">
-         <Router>
+         <Router basename="/products-app">
             <Header />
             <div className="content-page">
                <Routes>
