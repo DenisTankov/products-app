@@ -1,19 +1,17 @@
 import { HeartIcon } from "../icons/HeartIcon/HeartIcon";
 import { TrashBinIcon } from "../icons/TrashBinIcon/TrashBinIcon";
-
-import cls from "./ProductCard.module.scss";
-import { AppDispatch } from "../../app/store";
-import { toggleFavorite, deleteProduct } from "../../features/products/productsSlice";
-import { useDispatch } from "react-redux";
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Product } from "../../features/products/productsSlice";
+import cls from "./ProductCard.module.scss";
 
 interface ProductCardProps {
    product: Product;
+   onToggleFavorite: (id: number) => void;
+   onDelete: (id: number) => void;
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => {
-   const dispatch = useDispatch<AppDispatch>();
+const ProductCard = ({ product, onToggleFavorite, onDelete }: ProductCardProps) => {
    const navigate = useNavigate();
 
    return (
@@ -22,7 +20,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
          className={cls.productCard}
          onClick={() => navigate(`/products/${product.id}`)}
       >
-         {/* <img src={product.thumbnail} alt={product.title} /> */}
          <div className={cls.image} style={{ backgroundImage: `url(${product.thumbnail})` }} />
          <h2 className={cls.title}>{product.title} </h2>
          <p className={cls.truncate}>{product.description}</p>
@@ -30,7 +27,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             <span
                onClick={(e) => {
                   e.stopPropagation();
-                  dispatch(toggleFavorite(product.id));
+                  onToggleFavorite(product.id);
                }}
             >
                <HeartIcon filled={product.isFavorite} className={cls.like} />
@@ -39,7 +36,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
                className={cls.delete}
                onClick={(e) => {
                   e.stopPropagation();
-                  dispatch(deleteProduct(product.id));
+                  onDelete(product.id);
                }}
             >
                <TrashBinIcon className={cls.delete} />
@@ -48,3 +45,5 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       </div>
    );
 };
+
+export default memo(ProductCard);

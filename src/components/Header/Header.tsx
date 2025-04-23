@@ -3,16 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { AppDispatch, RootState } from "../../app/store";
 import { FilterType, setFilter } from "../../features/products/productsSlice";
 import cls from "./Header.module.scss";
+import { useCallback } from "react";
 
 export const Header = () => {
    const dispatch = useDispatch<AppDispatch>();
    const filter = useSelector((state: RootState) => state.products.filter);
    const navigate = useNavigate();
 
-   const handleSetFilter = (type: FilterType) => {
-      dispatch(setFilter(type));
-      navigate("/");
-   };
+   const handleSetFilter = useCallback(
+      (type: FilterType) => {
+         dispatch(setFilter(type));
+         navigate("/");
+      },
+      [dispatch, navigate]
+   );
 
    return (
       <header className={cls.header}>

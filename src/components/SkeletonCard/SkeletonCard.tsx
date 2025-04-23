@@ -1,10 +1,11 @@
+import { memo } from "react";
 import cls from "./SkeletonCard.module.scss";
 
 interface Props {
    className?: string;
 }
 
-export const SkeletonCard = ({ className = "" }: Props) => {
+const SkeletonCard = ({ className = "" }: Props) => {
    return (
       <div className={`${cls.skeletonCard} ${className}`}>
          <div className={cls.image}></div>
@@ -13,3 +14,5 @@ export const SkeletonCard = ({ className = "" }: Props) => {
       </div>
    );
 };
+
+export default memo(SkeletonCard);
