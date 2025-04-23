@@ -37,6 +37,7 @@ export enum Status {
 export enum FilterType {
    All = "all",
    Favorites = "favorites",
+   None = "none",
 }
 
 interface ProductsState {

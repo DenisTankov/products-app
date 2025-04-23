@@ -1,9 +1,9 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { AppDispatch } from "../../app/store";
 import { addProduct } from "../../features/products/productsSlice";
 import cls from "./CreateProductPage.module.scss";
-import { useNavigate } from "react-router-dom";
 
 interface FormState {
    title: string;
@@ -21,6 +21,12 @@ export const CreateProductPage = () => {
 
    const dispatch = useDispatch<AppDispatch>();
    const navigate = useNavigate();
+
+   const submitRef = useRef<HTMLButtonElement | null>(null);
+
+   const handleFieldFocus = () => {
+      submitRef.current?.blur();
+   };
 
    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { name, value } = e.target;
@@ -52,25 +58,40 @@ export const CreateProductPage = () => {
          <form className={cls.form} onSubmit={handleSubmit} noValidate>
             <label>
                Название
-               <input type="text" name="title" value={form.title} onChange={handleChange} />
+               <input
+                  type="text"
+                  name="title"
+                  value={form.title}
+                  onChange={handleChange}
+                  onFocus={handleFieldFocus}
+               />
                {errors.title && <span className={cls.error}>{errors.title}</span>}
             </label>
 
             <label>
                Описание
-               <textarea name="description" value={form.description} onChange={handleChange} />
+               <textarea
+                  name="description"
+                  value={form.description}
+                  onChange={handleChange}
+                  onFocus={handleFieldFocus}
+               />
                {errors.description && <span className={cls.error}>{errors.description}</span>}
             </label>
 
             <label>
                URL картинки
-               <input type="url" name="thumbnail" value={form.thumbnail} onChange={handleChange} />
+               <input
+                  type="url"
+                  name="thumbnail"
+                  value={form.thumbnail}
+                  onChange={handleChange}
+                  onFocus={handleFieldFocus}
+               />
                {errors.thumbnail && <span className={cls.error}>{errors.thumbnail}</span>}
             </label>
 
-            <button type="submit" className={cls.btn}>
-               Создать
-            </button>
+            <button type="submit">Создать</button>
          </form>
       </div>
    );

@@ -2,9 +2,9 @@
    width: 150px;
    height: 30px;
    border-radius: 20px;
-   color: white;
+   color: var(--buttons-hover);
    border: 2px solid;
-   position: relative;
+   position: absolute;
    margin-top: 150px;
 }
 .loader::before {

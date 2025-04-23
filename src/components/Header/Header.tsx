@@ -18,7 +18,9 @@ export const Header = () => {
       <header className={cls.header}>
          <h1 className={cls.title}>Список продуктов</h1>
          <Link to="/create-product">
-            <button className={cls.createBtn}>Создать</button>
+            <button className={cls.createBtn} onClick={() => handleSetFilter(FilterType.None)}>
+               Создать
+            </button>
          </Link>
          <div className={cls.filterButtons}>
             <button
